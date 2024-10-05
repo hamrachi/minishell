@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hamrachi <hamrachi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yojablao <yojablao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 10:15:24 by hamrachi          #+#    #+#             */
-/*   Updated: 2024/09/20 02:19:11 by hamrachi         ###   ########.fr       */
+/*   Updated: 2024/10/04 03:41:27 by yojablao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,38 +19,41 @@ void	ft_full_list(t_list **a, char *s , int c)
 	t_list	*tmp;
 	int		i;
 
-	array = ft_split(s, c);
+	array = f_split(s, c);
 	if (!array)
 		exit(1);
 	i = 0;
 	while (i < ft_counter(s, c))
 	{
-		printf("this is array = %s\n",array[i]);
+		// printf("this is array = %s\n",array[i]);
 		i++;
 	}
 	i = 0;
 	while (array[i])
 	{
-		tmp = ft_lstnew(array[i]);
-		printf("==> %s\n", tmp->content);
-		printf("stat ==> %d\n", tmp->stat);
+		tmp = f_lstnew(array[i]);
+		// printf("==> %s\n", tmp->content);
+		// printf("stat ==> %d\n", tmp->stat);
 		if (!tmp)
 			exit(1);
 		ft_lstadd_back(a, tmp);
 		i++;
 	}
-	ft_free_array(array);
+	// ft_free_array(array);
 }
 
-void	ft_print_stack(t_list *a)
+void	ft_print_stack(t_exec_cmd *a)
 {
-    t_list *tmp;
+    t_exec_cmd *tmp;
 
     tmp = a;
-    while (tmp)
+	int i = -1;
+    while (tmp != NULL)
     {
-       printf("content ==> %s\n", tmp->content);
-       printf("stat ==> %d\n", tmp->stat);
+		i = -1;
+       printf("content ==> %s\n", tmp->cmd);
+	   while (tmp->args[++i])
+    		printf("args ==> %s\n", tmp->args[i]);
 
         tmp = tmp->next;
     }
@@ -92,6 +95,8 @@ int	ft_check_grammer(t_list *a)
 			if (tmp -> next && tmp -> next -> stat == PIPE)
 				return (0);
 		}
+		if(tmp -> stat == TEXT)
+			f(tmp->content);
 		tmp = tmp -> next;
 	}
 	return(1);
