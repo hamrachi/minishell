@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yojablao <yojablao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hamrachi <hamrachi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 03:50:24 by yojablao          #+#    #+#             */
-/*   Updated: 2024/10/04 03:50:29 by yojablao         ###   ########.fr       */
+/*   Updated: 2024/10/05 13:45:05 by hamrachi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,5 +204,5 @@ void f(void *content)
             s[j++] = s[i];  // Copy valid characters to the current position
         i++;
     }
-    s[j] = '\0';  // Null-terminate at position j
+    s[j] = '\0';  // Null-terminate at position j // hna
 }
