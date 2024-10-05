@@ -6,7 +6,7 @@
 /*   By: yojablao <yojablao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 04:55:36 by hamrachi          #+#    #+#             */
-/*   Updated: 2024/10/04 03:53:20 by yojablao         ###   ########.fr       */
+/*   Updated: 2024/10/05 11:49:43 by yojablao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 char    *ft_my_malloc(size_t len)
 {
     char	*new;
-	size_t i;
+	// size_t i;
 
 	new = master(len,1);
 	if(!new)
@@ -23,12 +23,13 @@ char    *ft_my_malloc(size_t len)
 		free(new);
 		exit(1);
 	}
-	i = 0;
-	while (i < len)
-	{
-		new[i] = '\0';
-		i++;
-	}
+	// i = 0;
+	ft_memset(new,0,len);
+	// while (i < len)
+	// {
+	// 	new[i] = '\0';
+	// 	i++;
+	// }
 	return(new);
 }
 

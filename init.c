@@ -6,17 +6,17 @@
 /*   By: yojablao <yojablao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 03:53:57 by yojablao          #+#    #+#             */
-/*   Updated: 2024/10/04 03:56:58 by yojablao         ###   ########.fr       */
+/*   Updated: 2024/10/05 11:46:17 by yojablao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_top *init(char **envi)
+t_shell *init(char **envi)
 {
-	t_top *data;
+	t_shell *data;
 
-	data = malloc(sizeof(t_top));
+	data = malloc(sizeof(t_shell));
 	if(!data)
 		return(NULL);
 	data->env = malloc(sizeof(t_environment));
@@ -60,7 +60,10 @@ t_exec_cmd	*aloc_comond(char **env ,t_exec_cmd *s)
         perror("Memory allocation failed");
         exit(EXIT_FAILURE);
     }
-	st->head = s;
+    if(!s)
+	    s = st->head;
+    else
+	    st->head = s;
     st->infd = 0;
     st->outfd = 1;
     st->next = NULL;
@@ -68,4 +71,42 @@ t_exec_cmd	*aloc_comond(char **env ,t_exec_cmd *s)
     st->args = NULL;
     st->env = env;
 	return(st);
+}
+bool handel_redirect(int *j,char **words ,t_exec_cmd **comond)
+{
+    if(ft_strcmp(words[(*j)],"<<") == 0)
+    {
+        (*comond)->infd =  ft_herdoc(words[++(*j)],(*comond)->env);
+        if((*comond)->infd == -1)
+            return (perror(words[(*j)]) ,false);
+    }
+    else if( ft_strcmp(words[(*j)],">") == 0)
+    {
+        (*comond)->outfd = out_redirect(words[++(*j)]);
+        if((*comond)->outfd == -1)
+            return (perror(words[(*j)]) ,false);
+    }
+    else if(ft_strcmp(words[(*j)],"<") == 0)
+    {
+            (*comond)->infd = in_redirect(words[++(*j)]);
+            if((*comond)->infd == -1)
+                return (perror(words[(*j)]) ,false);
+    }
+    else if(ft_strcmp(words[(*j)],">>") == 0)
+    {
+        (*comond)->outfd = append(words[++(*j)]);
+        if((*comond)->outfd == -1)
+            return (perror(words[(*j)]) ,false);
+    }
+    return (true);
+}
+bool comond_init(t_shell **cmd)
+{
+	char **comond;
+    
+    comond = ft_joinlist((*cmd)->a);
+	if (!handel_onecomond(comond,&(*cmd)->cmd,(*cmd)->env->env))
+        return (false);
+	(*cmd)->cmd->cmd = find_comond((*cmd)->cmd->args[0],(*cmd)->env->env);
+    return (true);
 }

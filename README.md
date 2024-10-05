@@ -1,7 +1,5 @@
 # minishell
-
-
-
-
-lsl
-slslslls
+take cmd
+identfy specia characters
+identify_cmd
+com

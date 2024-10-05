@@ -6,7 +6,7 @@
 /*   By: yojablao <yojablao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 03:49:33 by yojablao          #+#    #+#             */
-/*   Updated: 2024/10/04 03:52:04 by yojablao         ###   ########.fr       */
+/*   Updated: 2024/10/05 13:32:50 by yojablao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ char *check_expand(char *line,char **env)
 }
 static char *read_it(const char *del,int *f,char **env,bool flage)
 {
+    (void)env;
+    (void)flage;
     char    *fullline;
     char    *tmp;
     char    *line;
@@ -59,14 +61,19 @@ static char *read_it(const char *del,int *f,char **env,bool flage)
     while(1)
     {
         line = readline("\033[95m heredoc> \033[0m");
-        if(!line || ft_strcmp(line ,(char *)del) == 0)
+        if(!line)
             break;
+        if(ft_strcmp(line ,(char *)del) == 0)
+        {
+            free (line);
+            break;
+        }
         if(flage == true)
             line = check_expand(line,env);
         tmp = line;
-        line =  f_strjoin(line,"\n");
-        tmp = fullline;
-        fullline =  f_strjoin(fullline,line);
+        tmp =  f_strjoin(line,"\n");
+        free(line);
+        fullline =  f_strjoin(fullline,tmp);
     }
     return(fullline);
 }
@@ -94,15 +101,13 @@ int    ft_herdoc(char *del,char **env)
     }
     else
         flage = true;
-    fullline =read_it(del,&fd,env,flage);
+    fullline = read_it(del,&fd,env,flage);
     if (fullline)
     {
         if(fullline == NULL)
             exit(1);
-
         if (write(fd, fullline, ft_strlen(fullline)) == -1)
-            return(perror("Error writing to file"),free(fullline),close(fd), -1);
-        free(fullline);
+            return(perror("Error writing to file"),close(fd), -1);
     }
     else
         return (close(fd),-1);

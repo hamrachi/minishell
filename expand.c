@@ -6,7 +6,7 @@
 /*   By: yojablao <yojablao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 03:50:05 by yojablao          #+#    #+#             */
-/*   Updated: 2024/10/04 03:51:15 by yojablao         ###   ########.fr       */
+/*   Updated: 2024/10/04 04:29:30 by yojablao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,9 @@ char    *find_comond(char *comond,char **env)
     t_env    *tmp ;
     char    *path;
     char    **fullpath;
-
+    
+    if(!comond)
+        return NULL;
     tmp = env_set(env);
     if(ft_strchr(comond,'/'))
         return(comond);

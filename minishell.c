@@ -6,29 +6,29 @@
 /*   By: yojablao <yojablao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 00:56:39 by hamrachi          #+#    #+#             */
-/*   Updated: 2024/10/04 03:59:01 by yojablao         ###   ########.fr       */
+/*   Updated: 2024/10/05 12:23:29 by yojablao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdio.h>
 
-void	leaks()
-{
-	system("leaks minishell");
-}
+// void	leaks()
+// {
+// 	system("leaks minishell");
+// }
 
 void     exic(t_exec_cmd **s,char **env)
 {
     pid_t pid  = fork();
-
+    int     status;
     if(pid == 0)
     {
         child(s,env);
         return ;
     }
     else 
-        waitpid(pid,0,0);
+        waitpid(pid,&status,0);
 
 }
 
@@ -93,43 +93,43 @@ void pipe_line(t_exec_cmd **s, char **env)
         close(prev[0]);
 }
 
-
+int exice(t_exec_cmd **cmd,int type,char **env)
+{
+    
+	if(type == 2)
+		pipe_line(cmd,env);
+	else
+		exic(cmd,env);
+    return 1;
+}
 int main(int ac, char **av, char **env)
 {
 	char    *input;
 
 	(void)ac;
 	(void)av;
-	(void)env;
-	t_top	*data;
+	t_shell	*data;
     char    prompt[] = "\x1B[36mminishell\x1B[0m : ";
     int flage;
 	data = init(env);
 	if(!data)
 		return 1;
+    // atexit(leaks);
 	while (1)
 	{ 
 		input = readline(prompt);
-		if (input ==  NULL || !*input)
-			return (free(input),1);
-		else
+		if(*input)
 		{
 			add_history(input);
-			if (!syntax(input,&data))
-            {
-				printf("syntax error\n");
-                continue;
-            }
-			flage = pars(&data,input);
-			if(flage == -1)
-				continue;
-			else if(flage == 2)
-				pipe_line(&data->cmd,env);
-			else
-				exic(&data->cmd,env);
+            flage = pars(&data,input);
+            // ft_print_stack(data->cmd);
+            if(flage != -1)
+                exice(&data->cmd,flage,env);
 		}
         free(input);
-        master(0,0);
 	}
+        master(0,0);
+    // free_data(&data);
 	return (0);
 }
+

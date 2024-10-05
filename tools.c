@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hamrachi <hamrachi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yojablao <yojablao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 03:50:24 by yojablao          #+#    #+#             */
-/*   Updated: 2024/10/05 13:45:05 by hamrachi         ###   ########.fr       */
+/*   Updated: 2024/10/05 13:36:32 by yojablao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void ft_printf_a(t_list *a)
     t_list *tmp = a;
     while(tmp)
     {
-        printf("%s - content\n",tmp->content);
+        printf("%s\n",tmp->content);
         tmp = tmp -> next;
     }
 }
@@ -120,9 +120,8 @@ bool    handel_comond(char *cmd,t_exec_cmd **comond,char **env)
                 words[i] =  expand(words[i],env);
                 // free(temp);
             }
-
         }
-        else if(ft_strcmp(words[i],"<<") == 0)
+        if(ft_strcmp(words[i],"<<") == 0)
         {
 
             (*comond)->infd =  ft_herdoc(words[++i],env);
@@ -134,7 +133,6 @@ bool    handel_comond(char *cmd,t_exec_cmd **comond,char **env)
             (*comond)->outfd = out_redirect(words[++i]);
             if((*comond)->outfd == -1)
                 return (perror(words[i]) ,false);
-
         }
         else if(ft_strcmp(words[i],"<") == 0)
         {
@@ -164,7 +162,7 @@ bool    handel_comond(char *cmd,t_exec_cmd **comond,char **env)
         return(false);
     args[j] = NULL;
     (*comond)->args = args;
-    (*comond)->cmd = words[0];
+    (*comond)->cmd = args[0];
     return(args);
     
 }
@@ -204,5 +202,5 @@ void f(void *content)
             s[j++] = s[i];  // Copy valid characters to the current position
         i++;
     }
-    s[j] = '\0';  // Null-terminate at position j // hna
+    s[j] = '\0';  // Null-terminate at position j
 }

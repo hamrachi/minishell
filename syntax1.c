@@ -6,7 +6,7 @@
 /*   By: yojablao <yojablao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 16:46:07 by hamrachi          #+#    #+#             */
-/*   Updated: 2024/10/04 04:01:06 by yojablao         ###   ########.fr       */
+/*   Updated: 2024/10/05 11:58:17 by yojablao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -235,7 +235,7 @@ char *rm_escap_char(char *s)
 }
 
 
-int syntax(char *str,t_top **cmd)
+int syntax(char *str,t_shell **cmd)
 {
     char *new;
 
@@ -243,7 +243,7 @@ int syntax(char *str,t_top **cmd)
 
 	if (!ft_check_quotes(str) || !ft_check_her(str))
 	{
-		free(str);
+		// free(str);
 		return (0);
 	}
     new = ft_handel_spaces_allocation(str);
@@ -251,7 +251,7 @@ int syntax(char *str,t_top **cmd)
 	ft_full_list(&(*cmd)->a, new, 32);
 	if (ft_check_grammer((*cmd)->a) == 0)
 	{
-		ft_free((*cmd)->a, str, new);
+		// ft_free((*cmd)->a, str, new);
 		return(0);
 	}
 	return (1);
