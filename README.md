@@ -1,1 +1,7 @@
 # minishell
+
+
+
+
+lsl
+slslslls
