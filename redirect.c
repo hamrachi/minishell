@@ -6,7 +6,7 @@
 /*   By: yojablao <yojablao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 03:50:16 by yojablao          #+#    #+#             */
-/*   Updated: 2024/10/04 03:50:17 by yojablao         ###   ########.fr       */
+/*   Updated: 2024/10/05 11:35:45 by yojablao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,12 @@ int append(char *file)
         return -1;
     return fd;
 
+}
+void free_data(t_shell **shell)
+{
+    t_shell *data;
+    data = (*shell);
+    free(data->env->lenv);
+    free(data->env);
+    free(data);
 }

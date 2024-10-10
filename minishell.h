@@ -6,7 +6,11 @@
 /*   By: hamrachi <hamrachi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 23:39:30 by hamrachi          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/10/10 16:07:42 by hamrachi         ###   ########.fr       */
+=======
+/*   Updated: 2024/10/05 11:48:31 by yojablao         ###   ########.fr       */
+>>>>>>> b7ccea5b59f66c470b577b18563440636c556427
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,13 +97,12 @@ typedef struct top
     t_environment   *env;
     t_exec_cmd *head;
     int     n_pipe;
-}t_top;
+}t_shell;
 
 t_list	*f_lstnew(void *content);
 char    *ft_my_malloc( size_t len);
-void	ft_free(t_list *a, char *s1, char *s2);
-void	ft_free_array(char **s1);
-int		syntax(char *str,t_top ** cmd);
+// void	ft_free(t_list *a, char *s1, char *s2);
+int		syntax(char *str,t_shell ** cmd);
 void	ft_full_list(t_list **a, char *s , int c);
 void	ft_print_stack(t_exec_cmd *a);
 void f(void *content);
@@ -130,14 +133,23 @@ char	*f_strdup(char *s1);
 char	*f_strjoin(char *s1, char*s2);
 char	**f_split(char *s, char c);
 void	*f_calloc(size_t count, size_t size);
-t_top   *init(char **envi);
-int pars(t_top **cmd,char *input);
+t_shell   *init(char **envi);
+int pars(t_shell **cmd,char *input);
 t_exec_cmd	*aloc_comond(char **env ,t_exec_cmd *s);
 char **init_mult_cmd(t_list *a, int p);
+<<<<<<< HEAD
 int pipe_check(char *s);
 //// expanding
 
 void    ft_expanding(char *str,char **env);
 size_t	skip_betw_quotes3(char *str, size_t *i);
+=======
+void free_data(t_shell **shell);
+bool handel_redirect(int *j,char **words ,t_exec_cmd **comond);
+bool init_pipe_line(t_shell **cmd);
+
+bool comond_init(t_shell **cmd);
+
+>>>>>>> b7ccea5b59f66c470b577b18563440636c556427
 
 #endif

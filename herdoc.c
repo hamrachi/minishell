@@ -6,7 +6,11 @@
 /*   By: hamrachi <hamrachi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 03:49:33 by yojablao          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/10/05 15:52:37 by hamrachi         ###   ########.fr       */
+=======
+/*   Updated: 2024/10/05 13:32:50 by yojablao         ###   ########.fr       */
+>>>>>>> b7ccea5b59f66c470b577b18563440636c556427
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +52,8 @@ char *check_expand(char *line,char **env)
 }
 static char *read_it(const char *del,int *f,char **env,bool flage)
 {
+    (void)env;
+    (void)flage;
     char    *fullline;
     char    *tmp;
     char    *line;
@@ -61,14 +67,27 @@ static char *read_it(const char *del,int *f,char **env,bool flage)
     while(1)
     {
         line = readline("\033[95m heredoc> \033[0m");
-        if(!line || ft_strcmp(line ,(char *)del) == 0)
+        if(!line)
             break;
+        if(ft_strcmp(line ,(char *)del) == 0)
+        {
+            free (line);
+            break;
+<<<<<<< HEAD
         // if(flage == true)
         //     line = check_expand(line,env);
         tmp = line;
         tmp =  f_strjoin(line,"\n");
         free(line);
         // tmp = fullline;/
+=======
+        }
+        if(flage == true)
+            line = check_expand(line,env);
+        tmp = line;
+        tmp =  f_strjoin(line,"\n");
+        free(line);
+>>>>>>> b7ccea5b59f66c470b577b18563440636c556427
         fullline =  f_strjoin(fullline,tmp);
     }
    
@@ -98,15 +117,17 @@ int    ft_herdoc(char *del,char **env)
     }
     else
         flage = true;
-    fullline =read_it(del,&fd,env,flage);
+    fullline = read_it(del,&fd,env,flage);
     if (fullline)
     {
         if(fullline == NULL)
             exit(1);
-
         if (write(fd, fullline, ft_strlen(fullline)) == -1)
             return(perror("Error writing to file"),close(fd), -1);
+<<<<<<< HEAD
         // free(fullline);
+=======
+>>>>>>> b7ccea5b59f66c470b577b18563440636c556427
     }
     else
         return (close(fd),-1);
