@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yojablao <yojablao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hamrachi <hamrachi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 23:39:30 by hamrachi          #+#    #+#             */
-/*   Updated: 2024/10/04 03:57:19 by yojablao         ###   ########.fr       */
+/*   Updated: 2024/10/10 16:07:42 by hamrachi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,13 +126,18 @@ char **ft_joinlist(t_list *a);
 int count_words(char **words);
 bool    pasabel(char *c);
 void    *master(size_t size, int flag);
-char	*f_strdup(const char *s1);
-char	*f_strjoin(char const *s1, char const *s2);
+char	*f_strdup(char *s1);
+char	*f_strjoin(char *s1, char*s2);
 char	**f_split(char *s, char c);
 void	*f_calloc(size_t count, size_t size);
 t_top   *init(char **envi);
 int pars(t_top **cmd,char *input);
 t_exec_cmd	*aloc_comond(char **env ,t_exec_cmd *s);
 char **init_mult_cmd(t_list *a, int p);
+int pipe_check(char *s);
+//// expanding
+
+void    ft_expanding(char *str,char **env);
+size_t	skip_betw_quotes3(char *str, size_t *i);
 
 #endif

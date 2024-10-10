@@ -57,6 +57,11 @@
   "C_Cpp_Runner.useLinkTimeOptimization": false,
   "C_Cpp_Runner.msvcSecureNoWarnings": false,
   "files.associations": {
-    "minishell.h": "c"
-  }
+    "minishell.h": "c",
+    "__tuple": "c",
+    "array": "c",
+    "__locale": "c",
+    "__node_handle": "c"
+  },
+  "C_Cpp.errorSquiggles": "disabled"
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   herdoc.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yojablao <yojablao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hamrachi <hamrachi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 03:49:33 by yojablao          #+#    #+#             */
-/*   Updated: 2024/10/04 03:52:04 by yojablao         ###   ########.fr       */
+/*   Updated: 2024/10/05 15:52:37 by hamrachi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ static char *read_it(const char *del,int *f,char **env,bool flage)
     char    *tmp;
     char    *line;
     int     fd;
+    (void)flage;
+    (void)env;
 
     fullline = NULL;
     fd = open("/tmp/lo.txt",O_CREAT | O_RDWR | O_TRUNC  ,0644);
@@ -61,13 +63,15 @@ static char *read_it(const char *del,int *f,char **env,bool flage)
         line = readline("\033[95m heredoc> \033[0m");
         if(!line || ft_strcmp(line ,(char *)del) == 0)
             break;
-        if(flage == true)
-            line = check_expand(line,env);
+        // if(flage == true)
+        //     line = check_expand(line,env);
         tmp = line;
-        line =  f_strjoin(line,"\n");
-        tmp = fullline;
-        fullline =  f_strjoin(fullline,line);
+        tmp =  f_strjoin(line,"\n");
+        free(line);
+        // tmp = fullline;/
+        fullline =  f_strjoin(fullline,tmp);
     }
+   
     return(fullline);
 }
 int    ft_herdoc(char *del,char **env)
@@ -101,8 +105,8 @@ int    ft_herdoc(char *del,char **env)
             exit(1);
 
         if (write(fd, fullline, ft_strlen(fullline)) == -1)
-            return(perror("Error writing to file"),free(fullline),close(fd), -1);
-        free(fullline);
+            return(perror("Error writing to file"),close(fd), -1);
+        // free(fullline);
     }
     else
         return (close(fd),-1);

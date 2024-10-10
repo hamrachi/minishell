@@ -6,7 +6,7 @@
 /*   By: hamrachi <hamrachi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 03:50:24 by yojablao          #+#    #+#             */
-/*   Updated: 2024/10/05 13:45:05 by hamrachi         ###   ########.fr       */
+/*   Updated: 2024/10/05 14:58:52 by hamrachi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,4 +205,5 @@ void f(void *content)
         i++;
     }
     s[j] = '\0';  // Null-terminate at position j // hna
+    
 }

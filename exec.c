@@ -14,7 +14,7 @@ void    child(t_exec_cmd **cmd,char **env)
         exit(EXIT_FAILURE);
     }
 }
-char	*f_strdup(const char *s1)
+char	*f_strdup(char *s1)
 {
 	char	*new;
 	int		i;
@@ -31,7 +31,7 @@ char	*f_strdup(const char *s1)
 	new[i] = '\0';
 	return (new);
 }
-char	*f_strjoin(char const *s1, char const *s2)
+char	*f_strjoin(char *s1, char *s2)
 {
 	char		*r;
 	size_t		ls1;

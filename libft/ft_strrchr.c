@@ -6,13 +6,13 @@
 /*   By: hamrachi <hamrachi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 16:04:19 by hamrachi          #+#    #+#             */
-/*   Updated: 2023/12/07 20:38:53 by hamrachi         ###   ########.fr       */
+/*   Updated: 2024/10/10 16:09:38 by hamrachi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char *s, int c)
+char	*ft_strrchr(char *s, int c)
 {
 	char	n;
 	int		len;

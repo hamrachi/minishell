@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yojablao <yojablao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hamrachi <hamrachi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 16:46:07 by hamrachi          #+#    #+#             */
-/*   Updated: 2024/10/04 04:01:06 by yojablao         ###   ########.fr       */
+/*   Updated: 2024/10/09 13:01:19 by hamrachi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,21 @@ char	*skip_betw_quotes2(char *str)
     }
 	return(str);
 }
+size_t skip_betw_quotes3(char *str, size_t *i)
+{
+    size_t len = 0;
+    char quote_char = str[*i];
 
+    len++;
+    (*i)++;
+    while (str[*i] != quote_char && str[*i] != '\0')
+    {
+        len++;
+        (*i)++;
+    }
+     len++;
+    return len;
+}
 // size_t  ft_count_operators(char *str)
 // {
 //    	t_num_operat s;
@@ -238,6 +252,7 @@ char *rm_escap_char(char *s)
 int syntax(char *str,t_top **cmd)
 {
     char *new;
+	//char **comnds;
 
 	(*cmd)->a = NULL;
 
@@ -254,6 +269,7 @@ int syntax(char *str,t_top **cmd)
 		ft_free((*cmd)->a, str, new);
 		return(0);
 	}
+	ft_expanding(str,(*cmd)->env->env);
 	return (1);
 }
 /*

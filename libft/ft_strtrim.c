@@ -6,13 +6,13 @@
 /*   By: hamrachi <hamrachi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 17:36:16 by hamrachi          #+#    #+#             */
-/*   Updated: 2023/12/12 10:58:37 by hamrachi         ###   ########.fr       */
+/*   Updated: 2024/10/10 16:09:56 by hamrachi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strtrim(char const *s1, char const *set)
+char	*ft_strtrim(char  *s1, char  *set)
 {
 	char	*end;
 	char	*result;
