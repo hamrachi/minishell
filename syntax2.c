@@ -6,7 +6,7 @@
 /*   By: hamrachi <hamrachi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 10:15:24 by hamrachi          #+#    #+#             */
-/*   Updated: 2024/10/08 11:10:53 by hamrachi         ###   ########.fr       */
+/*   Updated: 2024/10/12 16:52:04 by hamrachi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,8 @@ int	ft_check_grammer(t_list *a)
 			if (tmp -> next && tmp -> next -> stat == PIPE)
 				return (0);
 		}
-		if(tmp -> stat == TEXT)
-			f(tmp->content);
+		// if(tmp -> stat == TEXT)
+		// 	f(tmp->content);
 		tmp = tmp -> next;
 	}
 	return(1);

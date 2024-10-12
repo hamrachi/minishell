@@ -33,14 +33,18 @@ char	*f_strdup(char *s1)
 }
 char	*f_strjoin(char *s1, char *s2)
 {
+	//printf("here spit\n");
 	char		*r;
 	size_t		ls1;
 	size_t		ls2;
 	size_t		t;
 	size_t		i;
 
+	
 	if (s1 == NULL && s2 == NULL)
 		return (NULL);
+	if (!s2 && s1)
+		return(f_strdup(s1));
 	if (!s1 && s2)
 		return(f_strdup(s2));
 	i = 0;

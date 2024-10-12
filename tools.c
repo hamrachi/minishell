@@ -3,16 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yojablao <yojablao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hamrachi <hamrachi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 03:50:24 by yojablao          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/10/05 14:58:52 by hamrachi         ###   ########.fr       */
-=======
-/*   Updated: 2024/10/05 13:36:32 by yojablao         ###   ########.fr       */
->>>>>>> b7ccea5b59f66c470b577b18563440636c556427
+/*   Updated: 2024/10/12 16:56:44 by hamrachi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "minishell.h"
 t_env     *env_set(char **envi)
@@ -187,29 +184,4 @@ void filehandler(t_exec_cmd **s)
         }
         close((*s)->outfd);  
     }
-}
-void f(void *content)
-{
-    char *s = (char *)content;  // Cast content to char as it's passed as void *
-    int i = 0;
-    int j = 0;
-    int single_q = 0;
-    int double_q = 0;
-
-    while (s[i])
-    {
-        if (s[i] == '\'' && !double_q)
-            single_q = !single_q;
-        else if (s[i] == '"' && !single_q)
-            double_q = !double_q;
-        else
-            s[j++] = s[i];  // Copy valid characters to the current position
-        i++;
-    }
-<<<<<<< HEAD
-    s[j] = '\0';  // Null-terminate at position j // hna
-    
-=======
-    s[j] = '\0';  // Null-terminate at position j
->>>>>>> b7ccea5b59f66c470b577b18563440636c556427
 }

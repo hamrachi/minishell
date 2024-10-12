@@ -6,11 +6,7 @@
 /*   By: hamrachi <hamrachi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 03:49:33 by yojablao          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/10/05 15:52:37 by hamrachi         ###   ########.fr       */
-=======
-/*   Updated: 2024/10/05 13:32:50 by yojablao         ###   ########.fr       */
->>>>>>> b7ccea5b59f66c470b577b18563440636c556427
+/*   Updated: 2024/10/10 17:47:48 by hamrachi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,21 +69,18 @@ static char *read_it(const char *del,int *f,char **env,bool flage)
         {
             free (line);
             break;
-<<<<<<< HEAD
         // if(flage == true)
         //     line = check_expand(line,env);
         tmp = line;
         tmp =  f_strjoin(line,"\n");
         free(line);
         // tmp = fullline;/
-=======
         }
         if(flage == true)
             line = check_expand(line,env);
         tmp = line;
         tmp =  f_strjoin(line,"\n");
         free(line);
->>>>>>> b7ccea5b59f66c470b577b18563440636c556427
         fullline =  f_strjoin(fullline,tmp);
     }
    
@@ -124,10 +117,7 @@ int    ft_herdoc(char *del,char **env)
             exit(1);
         if (write(fd, fullline, ft_strlen(fullline)) == -1)
             return(perror("Error writing to file"),close(fd), -1);
-<<<<<<< HEAD
         // free(fullline);
-=======
->>>>>>> b7ccea5b59f66c470b577b18563440636c556427
     }
     else
         return (close(fd),-1);

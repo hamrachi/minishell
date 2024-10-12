@@ -6,11 +6,7 @@
 /*   By: hamrachi <hamrachi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 03:49:39 by yojablao          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/10/05 15:41:49 by hamrachi         ###   ########.fr       */
-=======
-/*   Updated: 2024/10/05 13:36:23 by yojablao         ###   ########.fr       */
->>>>>>> b7ccea5b59f66c470b577b18563440636c556427
+/*   Updated: 2024/10/12 15:26:51 by hamrachi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +31,7 @@ int pars(t_shell **cmd,char *input)
 {
     if (!syntax(input,cmd))
 		return (printf("syntax error\n"), -1);
-    ft_printf_a((*cmd)->a);
+    //ft_printf_a((*cmd)->a);
 	// (*cmd)->cmd = aloc_comond((*cmd)->env->env,NULL);
 	if(!(*cmd)->cmd)
 		return -1;

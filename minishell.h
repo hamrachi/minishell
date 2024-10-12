@@ -6,13 +6,10 @@
 /*   By: hamrachi <hamrachi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 23:39:30 by hamrachi          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/10/10 16:07:42 by hamrachi         ###   ########.fr       */
-=======
-/*   Updated: 2024/10/05 11:48:31 by yojablao         ###   ########.fr       */
->>>>>>> b7ccea5b59f66c470b577b18563440636c556427
+/*   Updated: 2024/10/12 16:54:41 by hamrachi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 # ifndef MINISHELL_H
 #define MINISHELL_H
@@ -137,19 +134,17 @@ t_shell   *init(char **envi);
 int pars(t_shell **cmd,char *input);
 t_exec_cmd	*aloc_comond(char **env ,t_exec_cmd *s);
 char **init_mult_cmd(t_list *a, int p);
-<<<<<<< HEAD
+
 int pipe_check(char *s);
 //// expanding
 
 void    ft_expanding(char *str,char **env);
 size_t	skip_betw_quotes3(char *str, size_t *i);
-=======
 void free_data(t_shell **shell);
 bool handel_redirect(int *j,char **words ,t_exec_cmd **comond);
 bool init_pipe_line(t_shell **cmd);
 
 bool comond_init(t_shell **cmd);
-
->>>>>>> b7ccea5b59f66c470b577b18563440636c556427
+char    *f_expanding_quotes(void *content);
 
 #endif
