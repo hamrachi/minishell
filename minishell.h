@@ -6,7 +6,7 @@
 /*   By: hamrachi <hamrachi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 23:39:30 by hamrachi          #+#    #+#             */
-/*   Updated: 2024/10/12 16:54:41 by hamrachi         ###   ########.fr       */
+/*   Updated: 2024/10/21 18:02:19 by hamrachi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,15 @@ typedef struct s_env
     char *value;
     struct s_env *next;
 } t_env;
+typedef struct s_expand
+{
+    char *key;
+    char *value;
+    bool is_expand;
+    int start;
+    int start_letter;
+    int end;
+}t_expand;
 
 typedef struct s_exec_cmd {
     struct s_exec_cmd *next;
@@ -41,15 +50,15 @@ typedef struct s_exec_cmd {
     // char **files;
     char **env;
 } t_exec_cmd;
-typedef struct s_num_operat
-{
-    size_t pipe;
-    size_t inp;
-    size_t out;
-    size_t app;
-    size_t her;
-    size_t len;
-}   t_num_operat;
+// typedef struct s_num_operat
+// {
+//     size_t pipe;
+//     size_t inp;
+//     size_t out;
+//     size_t app;
+//     size_t her;
+//     size_t len;
+// }   t_num_operat;
 
 typedef struct s_member_split
 {
@@ -138,7 +147,7 @@ char **init_mult_cmd(t_list *a, int p);
 int pipe_check(char *s);
 //// expanding
 
-void    ft_expanding(char *str,char **env);
+// void    ft_expanding(char *str,char **env);
 size_t	skip_betw_quotes3(char *str, size_t *i);
 void free_data(t_shell **shell);
 bool handel_redirect(int *j,char **words ,t_exec_cmd **comond);
@@ -146,5 +155,11 @@ bool init_pipe_line(t_shell **cmd);
 
 bool comond_init(t_shell **cmd);
 char    *f_expanding_quotes(void *content);
-
+//------------------mine---------------/
+char *f_substr(char *s, size_t start, size_t len);
+int ft_str_lencmp(char *s1, char *s2, size_t i);
+int ft_check_next_charachter(char *s, size_t start, size_t len);
+void    expand_input(char *str, t_env *envs);
+//------------------------------------/
+char *ft_expand(char *s, char **env);
 #endif

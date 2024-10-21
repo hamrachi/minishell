@@ -6,7 +6,7 @@
 /*   By: hamrachi <hamrachi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 00:56:39 by hamrachi          #+#    #+#             */
-/*   Updated: 2024/10/12 17:33:11 by hamrachi         ###   ########.fr       */
+/*   Updated: 2024/10/20 21:17:30 by hamrachi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ int main(int ac, char **av, char **env)
 {
 	char    *input;
 
+    input = NULL;
 	(void)ac;
 	(void)av;
 	t_shell	*data;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   malloc.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yojablao <yojablao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hamrachi <hamrachi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 04:55:36 by hamrachi          #+#    #+#             */
-/*   Updated: 2024/10/05 11:49:43 by yojablao         ###   ########.fr       */
+/*   Updated: 2024/10/20 21:14:32 by hamrachi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 char    *ft_my_malloc(size_t len)
 {
     char	*new;
-	// size_t i;
+	size_t i;
 
 	new = master(len,1);
 	if(!new)
@@ -23,13 +23,13 @@ char    *ft_my_malloc(size_t len)
 		free(new);
 		exit(1);
 	}
-	// i = 0;
-	ft_memset(new,0,len);
-	// while (i < len)
-	// {
-	// 	new[i] = '\0';
-	// 	i++;
-	// }
+	i = 0;
+	//ft_memset(new,0,len);
+	while (i < len)
+	{
+		new[i] = '\0';
+		i++;
+	}
 	return(new);
 }
 
@@ -95,7 +95,7 @@ void	*f_calloc(size_t count, size_t size)
 	str = master(count * size,1);
 	if (!str)
 		return (NULL);
-	ft_bzero (str, (count * size));
+	 ft_bzero (str, (count * size));
 	return (str);
 }
 t_list	*f_lstnew(void *content)

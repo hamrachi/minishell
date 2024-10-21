@@ -2,3 +2,10 @@ $185amine6 ==> 85amine6
 $$ == $
 $ == $
 $? == exit status; // blanha apres
+
+ $"hey" 
+ "$=/*-+@!#%^.*:" 
+ if (l == ' ' || (l >= 9 && l <= 13))
+		return (true);
+
+$fgsdfgdgf #fhdfgh

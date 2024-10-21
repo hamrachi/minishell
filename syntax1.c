@@ -6,7 +6,7 @@
 /*   By: hamrachi <hamrachi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 16:46:07 by hamrachi          #+#    #+#             */
-/*   Updated: 2024/10/10 17:48:27 by hamrachi         ###   ########.fr       */
+/*   Updated: 2024/10/21 18:02:31 by hamrachi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,43 +14,37 @@
 
 void	skip_betw_quotes(char *str, size_t *i)
 {
-    if (str[*i] == 34)
-    {
+	char	quot_char;
+
+	quot_char = str[*i];
+	 (*i)++;
+    while (str[*i] && str[*i] != quot_char)
         (*i)++;
-        while (str[*i] != 34 && str[*i] != '\0')
-            (*i)++;
-    }
-    else if(str[*i] == 39)
-    {
-        (*i)++;
-        while (str[*i] != 39 && str[*i] != '\0')
-            (*i)++;
-    }
 }
 char	*skip_betw_quotes2(char *str)
 {
 	if (*str == 34)
     {
         str++;
-        while (*str != 34 && *str != '\0')
+        while (*str && *str != 34 )
         	str++;
     }
     else if (*str == 39)
     {
         str++;
-        while (*str != 39 && *str != '\0')
+        while (*str && *str != 39)
             str++;
     }
 	return(str);
 }
 size_t skip_betw_quotes3(char *str, size_t *i)
 {
-    size_t len = 0;
     char quote_char = str[*i];
+	size_t len = 0;
 
     len++;
     (*i)++;
-    while (str[*i] != quote_char && str[*i] != '\0')
+    while (str[*i] && str[*i] != quote_char)
     {
         len++;
         (*i)++;
@@ -92,36 +86,32 @@ size_t skip_betw_quotes3(char *str, size_t *i)
 // }
 size_t  ft_count_operators(char *str)
 {
-   	t_num_operat s;
 	size_t	i;
-	size_t  res;
-
-	s.pipe = 0;
-	s.her = 0;
-	s.inp = 0;
-	s.out = 0;
-	s.app = 0;
+	size_t c;
 	i = 0;
+	c = 0;
     while (str[i])
 	{
 		if (str[i] == 34 || str[i] == 39)
 			skip_betw_quotes(str, &i);
-		if (str[i] == '|')
-			s.pipe += 1;
-		
-		// Ensure that i > 0 before accessing str[i-1]
-		if (i > 0 && str[i - 1] != '<' && str[i] == '<' && str[i + 1] != '<')
-			s.inp += 1;
-		if (i > 0 && str[i - 1] != '>' && str[i] == '>' && str[i + 1] != '>')
-			s.out += 1;
-		if (i > 0 && str[i - 1] != '>' && str[i] == '>' && str[i + 1] == '>' && str[i + 2] != '>')
-			s.app += 1;
-		if (i > 0 && str[i - 1] != '<' && str[i] == '<' && str[i + 1] == '<' && str[i + 2] != '<')
-			s.her += 1;
+		else if (str[i] == '|')
+			c++;
+		else if (str[i] == '<')
+		{
+			if (str[i + 1] == '<')
+				i++;
+			c++;
+		}
+		else if (str[i] == '>')
+		{
+			if (str[i + 1] == '>')
+				i++;
+			c++;
+		}
 		i++;	
 	}
-	res = (s.pipe + s.app + s.her + s.inp + s.out) * 2;
-	return (res);
+	printf("|%zu|\n",c);
+	return (c * 2);
 }
 
 char    *ft_handel_spaces_allocation(char *str)
@@ -130,7 +120,9 @@ char    *ft_handel_spaces_allocation(char *str)
 	size_t len1;
     size_t len2;
 
+	new = NULL;
     len2 = ft_count_operators(str);
+	printf("size|%zu|\n",len2);
 	len1  = ft_strlen(str) + len2;
 	new = ft_my_malloc(len1 + 1);
 	return(new);
@@ -252,10 +244,11 @@ char *rm_escap_char(char *s)
 int syntax(char *str,t_shell **cmd)
 {
     char *new;
-	//char **comnds;
+	char *expend;
 
+	new = NULL;
+	expend = NULL;
 	(*cmd)->a = NULL;
-
 	if (!ft_check_quotes(str) || !ft_check_her(str))
 	{
 		// free(str);
@@ -269,7 +262,10 @@ int syntax(char *str,t_shell **cmd)
 		// ft_free((*cmd)->a, str, new);
 		return(0);
 	}
-	ft_expanding(str,(*cmd)->env->env);
+	expend = ft_expand(str,(*cmd)->env->env);
+	printf("this is expend[%s]\n",expend);
+	// //expand_input(new, env_set((*cmd)->env->env));
+	// ft_expanding(new,(*cmd)->env->env);
 	return (1);
 }
 /*

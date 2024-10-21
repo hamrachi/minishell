@@ -39,10 +39,9 @@ char	*f_strjoin(char *s1, char *s2)
 	size_t		ls2;
 	size_t		t;
 	size_t		i;
-
 	
 	if (s1 == NULL && s2 == NULL)
-		return (NULL);
+		return (f_strdup(""));
 	if (!s2 && s1)
 		return(f_strdup(s1));
 	if (!s1 && s2)
@@ -64,14 +63,16 @@ char	*f_strjoin(char *s1, char *s2)
 	return (r);
 }
 
-static char	*ft_mysep(char *s1, char c)
+char	*ft_mysep1(char *s1, char c)
 {
 	char	*result;
 	size_t	lword;
 	size_t	i;
 
+	result = NULL;
 	lword = 0;
-	while (s1[lword] != c && s1[lword])
+	printf("s1 lword --> %s\n", s1);
+	while (s1[lword] && s1[lword] != c)
 	{
 		if (s1[lword] == 39 || s1[lword] == 34)
 		{
@@ -81,7 +82,8 @@ static char	*ft_mysep(char *s1, char c)
         else
 			lword++;
 	}
-	result = ft_my_malloc(lword + 1);
+	printf("lword %zu\n" ,lword);
+	result = ft_my_malloc(lword + 2);
 	i = 0;
 	while (i < lword)
 	{
@@ -92,18 +94,19 @@ static char	*ft_mysep(char *s1, char c)
 	return (result);
 }
 
-static char	**my_copy(char **new, char *s, int x, char c)
+char	**my_copy1(char **new, char *s, int x, char c)
 {
 	t_member_split sp;
 
 	sp.n = 0;
+	sp.tmp = NULL;
 	while (*s && sp.n < x)
 	{
 		while (*s == c && *s)
 			s++;
 		if (*s != '\0')
 		{
-			sp.tmp = ft_mysep(s, c);
+			sp.tmp = ft_mysep1(s, c);
 			new[sp.n++] = sp.tmp;
 		}
 		while (*s != c && *s)
@@ -117,7 +120,7 @@ static char	**my_copy(char **new, char *s, int x, char c)
 				s++;
 		}
 	}
-	new[sp.n] = 0;
+	new[sp.n] = NULL;
 	return (new);
 }
 
@@ -128,11 +131,12 @@ char	**f_split(char *s, char c)
 
 	if (!s)
 		return (NULL);
+	new = NULL;
 	x = ft_counter(s, c);
 	new = (char **)f_calloc(x + 1, sizeof(char *));
 	if (!new)
 		return (NULL);
-	new = my_copy(new, s, x, c);
+	new = my_copy1(new, s, x, c);
 	return (new);
 }
 

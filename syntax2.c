@@ -6,7 +6,7 @@
 /*   By: hamrachi <hamrachi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 10:15:24 by hamrachi          #+#    #+#             */
-/*   Updated: 2024/10/12 16:52:04 by hamrachi         ###   ########.fr       */
+/*   Updated: 2024/10/20 21:39:40 by hamrachi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,29 @@
 
 void	ft_full_list(t_list **a, char *s , int c)
 {
-	char	**array;
-	t_list	*tmp;
+	char	**array = NULL;
+	t_list	*tmp = NULL;
 	int		i;
 
 	array = f_split(s, c);
 	if (!array)
 		exit(1);
 	i = 0;
-	while (i < ft_counter(s, c))
+	while (array[i])
 	{
-		// printf("this is array = %s\n",array[i]);
+		printf("this is array = %s\n",array[i]);
 		i++;
 	}
 	i = 0;
 	while (array[i])
 	{
 		tmp = f_lstnew(array[i]);
-		// printf("==> %s\n", tmp->content);
-		// printf("stat ==> %d\n", tmp->stat);
+		printf("==> %s\n", tmp->content);
+		printf("stat ==> %d\n", tmp->stat);
 		if (!tmp)
 			exit(1);
 		ft_lstadd_back(a, tmp);
+		printf("hello\n");
 		i++;
 	}
 	// ft_free_array(array);
