@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hamrachi <hamrachi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yojablao <yojablao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/10 16:04:19 by hamrachi          #+#    #+#             */
-/*   Updated: 2023/12/07 20:38:53 by hamrachi         ###   ########.fr       */
+/*   Created: 2024/10/26 00:26:56 by yojablao          #+#    #+#             */
+/*   Updated: 2024/10/31 14:26:58 by yojablao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../minishell.h"
 
-char	*ft_strrchr(const char *s, int c)
+void	pwd_builting(t_env *l)
 {
-	char	n;
-	int		len;
+	char	buffer[1024];
+	char	*path;
 
-	n = (char)c;
-	len = ft_strlen(s);
-	while (len >= 0)
-	{
-		if (s[len] == n)
-		{
-			return ((char *)(s + len));
-		}
-		len--;
-	}
-	return (NULL);
+	path = getcwd(buffer, sizeof(buffer));
+	if (path == NULL)
+		path = extract_value(l, "PWD");
+	get_exit(0, 0);
+	printf("%s\n", path);
 }

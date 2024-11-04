@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*   heredoc_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hamrachi <hamrachi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yojablao <yojablao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/19 17:36:16 by hamrachi          #+#    #+#             */
-/*   Updated: 2023/12/12 10:58:37 by hamrachi         ###   ########.fr       */
+/*   Created: 2024/10/31 12:18:35 by yojablao          #+#    #+#             */
+/*   Updated: 2024/10/31 12:19:34 by yojablao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../minishell.h"
 
-char	*ft_strtrim(char const *s1, char const *set)
+void	free2d(char **s)
+{
+	int	i;
+
+	i = -1;
+	while (s[++i] != NULL)
+		free(s[i]);
+}
+
+char	*f_strtrim(char const *s1, char const *set)
 {
 	char	*end;
 	char	*result;
@@ -28,7 +37,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 		end--;
 	end += 1;
 	s = ft_strlen(s1) - ft_strlen(end);
-	result = (char *)malloc(s + 1);
+	result = (char *)master(s + 1, 1);
 	if (!result)
 		return (NULL);
 	i = 0;
@@ -39,4 +48,18 @@ char	*ft_strtrim(char const *s1, char const *set)
 	}
 	result[i] = '\0';
 	return (result);
+}
+
+char	*ft_get_env(t_shell *data, char *key)
+{
+	t_env	*temp;
+
+	temp = data->env->lenv;
+	while (temp)
+	{
+		if (ft_strcmp(temp->key, key) == 0)
+			return (temp->value);
+		temp = temp->next;
+	}
+	return (NULL);
 }

@@ -1,13 +1,30 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   b_env.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yojablao <yojablao@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/26 00:26:36 by yojablao          #+#    #+#             */
+/*   Updated: 2024/10/28 09:11:12 by yojablao         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
-int    env_buil(char **env)
+int	env_build(t_env *env)
 {
-    int i = 0;
-    while (env[i])
-    {
-        printf("%s\n",env[i]);
-        i++;
-    }
-    return 0;
-    
+	while (env)
+	{
+		if (env->valid == 1)
+		{
+			ft_putstr_fd(env->key, 1);
+			ft_putstr_fd("=", 1);
+			ft_putstr_fd(env->value, 1);
+			ft_putstr_fd("\n", 1);
+		}
+		env = env->next;
+	}
+	get_exit(0, 0);
+	return (0);
 }

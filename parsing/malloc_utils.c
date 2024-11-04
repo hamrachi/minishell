@@ -1,33 +1,60 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   malloc_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yojablao <yojablao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/03 15:55:23 by hamrachi          #+#    #+#             */
-/*   Updated: 2024/10/31 15:10:51 by yojablao         ###   ########.fr       */
+/*   Created: 2024/10/31 12:25:15 by yojablao          #+#    #+#             */
+/*   Updated: 2024/10/31 12:25:54 by yojablao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../minishell.h"
 
-char	*ft_strdup(const char *s1)
+char	*ft_my_malloc(size_t len)
 {
 	char	*new;
-	int		i;
 
-	if (!s1)
-		return (NULL);
-	new = (char *)malloc(sizeof (char) * ft_strlen(s1) + 1);
-	if (new == NULL)
-		return (NULL);
+	new = master(len, 1);
+	if (!new)
+	{
+		free(new);
+		exit(1);
+	}
+	ft_memset(new, 0, len);
+	return (new);
+}
+
+void	ft_free(t_list *a, char *s1, char *s2)
+{
+	ft_free_stack(a);
+	free(s1);
+	free(s2);
+}
+
+void	ft_free_array(char **s1)
+{
+	int	i;
+
 	i = 0;
 	while (s1[i])
 	{
-		new[i] = s1[i];
+		free(s1[i]);
 		i++;
 	}
-	new[i] = '\0';
-	return (new);
+	free(s1);
+}
+
+void	free_all(void **arr)
+{
+	int	i;
+
+	i = 0;
+	while (arr[i])
+	{
+		free(arr[i]);
+		arr[i] = NULL;
+		i++;
+	}
 }

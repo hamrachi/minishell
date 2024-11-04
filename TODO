@@ -1,11 +1,40 @@
-$185amine6 ==> 85amine6
-$$ == $
-$ == $
-$? == exit status; // blanha apres
+minishell:> asgdhjagsd | asdasd
+minishell:  asgdhjagsd: command not found
+minishell:  asdasd: command not found
+minishell:> Quit: 3
+Quit: 3
+it's showing Quite: 3 after doing CTRL Quit
 
- $"hey" 
- "$=/*-+@!#%^.*:" 
- if (l == ' ' || (l >= 9 && l <= 13))
-		return (true);
 
-$fgsdfgdgf #fhdfgh
+
+
+minishell:> cat << a << b <<c
+Heredoc>
+minishell:> 
+exit
+
+it's exiting after doing CTRL C after CTRL C on Heredoc
+
+
+
+
+minishell:> cat | cat | cat | cat | ls
+Makefile        exec            main.c          minishell.h
+TODO            expanding       main.o          parsing
+bulting         libft           minishell
+^C
+minishell:> echo $?
+130
+//it should be exited with 0 
+
+
+
+minishell:> cat | cat | cat | cat 
+^\Quit: 3
+Quit: 3
+
+
+env 12312 (env ghatkhdm ila makant tachihaja 9damha)
+
+
+
