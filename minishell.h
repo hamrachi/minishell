@@ -6,7 +6,7 @@
 /*   By: hamrachi <hamrachi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 23:39:30 by hamrachi          #+#    #+#             */
-/*   Updated: 2024/11/04 01:08:00 by hamrachi         ###   ########.fr       */
+/*   Updated: 2024/11/04 10:07:38 by hamrachi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,6 +183,7 @@ void						close_open_fd_1(t_exec_cmd **data);
 //------------expanding fuctions--------//
 //char						*ft_expand1(char *s, char **envi, t_env *lenv);
 char						*ft_expand1(char *s, char **envi, t_env *lenv);
+char						*ft_expend_her(char *line, t_environment **env);
 //char						*handle_dollar(char *s, int *i, t_env *env, char *buffer);
 char						*handle_d_q_content(char *tmp, int *j, t_env *env,
 								char *buffer);

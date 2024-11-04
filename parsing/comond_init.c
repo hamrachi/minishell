@@ -6,7 +6,7 @@
 /*   By: hamrachi <hamrachi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 10:29:44 by yojablao          #+#    #+#             */
-/*   Updated: 2024/11/04 01:13:45 by hamrachi         ###   ########.fr       */
+/*   Updated: 2024/11/04 11:37:39 by hamrachi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,13 +88,12 @@ char	**ft_joinlist(t_list **lst, t_environment **env, int status)
 			{
 				words[index++] = valid_exp((*lst)->content, expanded, status);
 				if ((*env)->lenv->flage)
-					(1)&& (words = correct_cmd(words, &index),(*env)->lenv->flage =0);
+					(1)&& (words = correct_cmd(words, &index),(*env)->lenv->flage = 0);
 			}
 		}
 		(1 && (status = (*lst)->stat), *lst = (*lst)->next);
 	}
 	init_lst_index(lst);
-	// printf("%d\n,%lu\n",index,sizeof(words));
 	words[index] = NULL;
 	return (words);
 }

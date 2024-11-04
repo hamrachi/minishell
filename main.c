@@ -6,7 +6,7 @@
 /*   By: hamrachi <hamrachi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 17:06:47 by yojablao          #+#    #+#             */
-/*   Updated: 2024/11/04 02:48:58 by hamrachi         ###   ########.fr       */
+/*   Updated: 2024/11/04 10:49:56 by hamrachi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ bool	comond_init(t_shell **cmd)
 	return (true);
 }
 
-static void	process_input(char *input, t_shell **data)
+static void	process_input(char *input, t_shell **data) 
 {
 	int	flage;
 
@@ -85,7 +85,7 @@ static void	minishell_loop(t_shell **data, char *prompt)
 	}
 }
 
-int	main(int ac, char **av, char **env)
+int	main(int ac, char **av, char **env) 
 {
 	t_shell	*data;
 	char	*prompt;

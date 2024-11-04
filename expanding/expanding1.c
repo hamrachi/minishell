@@ -6,7 +6,7 @@
 /*   By: hamrachi <hamrachi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 11:12:57 by hamrachi          #+#    #+#             */
-/*   Updated: 2024/11/04 01:07:42 by hamrachi         ###   ########.fr       */
+/*   Updated: 2024/11/04 11:37:06 by hamrachi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,11 +108,7 @@ char	*ft_expand1(char *s, char **envi, t_env *lenv)
 		else if (s[i] == '\"')
 			buffer = handle_double_quote(s, &i, env, buffer);
 		else if (s[i] == '$')
-		{
-			printf("buffer -- > %s\n" ,buffer);
 			buffer = handle_dollar(s, &i, env, buffer);
-			printf("buffer2 -- > %s\n", buffer);
-		}
 		else
 			buffer = handle_normal_text(s, &i, buffer);
 		if (s[i])

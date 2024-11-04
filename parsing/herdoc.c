@@ -6,7 +6,7 @@
 /*   By: hamrachi <hamrachi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 03:49:33 by yojablao          #+#    #+#             */
-/*   Updated: 2024/11/04 02:16:19 by hamrachi         ###   ########.fr       */
+/*   Updated: 2024/11/04 10:14:43 by hamrachi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,46 +31,6 @@ void	hrdc_sig(int sig)
 	close(0);
 	get_exit(1, false);
 	g_sig = -1337;
-}
-
-char	*ft_expend_her(char *line, t_environment **env)
-{
-	char *tmp;
-	char *buffer;
-	int i;
-	int start;
-	int end;
-
-	buffer = NULL;
-	tmp = NULL;
-	i = 0;
-	if (!line)
-		return (NULL);
-	while(line[i])
-	{
-		if (line[i] == '$')
-		{
-			start = i;
-			i++;
-			while (line[i] && line[i] != '"' && line[i] != '\'' && line[i] != '$')
-				i++;
-			end = --i;
-			tmp = ft_strrange(line, start, end + 1);
-			tmp = ft_expand1(tmp, (*env)->env, (*env)->lenv);
-			buffer = f_strjoin(buffer, tmp);
-		}
-		else
-		{
-			start = i;
-			while(line[i] && line[i] != '$')
-				i++;
-			end = --i;
-			tmp = ft_strrange(line, start, end + 1);
-			buffer = f_strjoin(buffer, tmp);
-		}
-		i++;
-	}
-	return(buffer);
 }
 
 char	*heredoc_loop(char *del, t_environment **env, bool flage)
